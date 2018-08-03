@@ -11,12 +11,23 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+  updateShelfBooks = (book, event) => {
+
+    let booksChange
+    
+    this.setState((state) => {
+      booksChange = state.books.map((s) => {(s.shelf === book.shelf ? book.shelf = event : '')})
+      return booksChange
+    })
+
+    //ContactsAPI.remove(contact)
+  }
+
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
-
   
   
   render() {
@@ -37,18 +48,24 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-        <SearchBooks 
+        {/*<SearchBooks 
           className="search-books"    
-        />
+        />*/}
 
         <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
           </div>
-          
-          <BookShelf className="list-books" books={currentlyReadingBooks} titleSection="Currently Read"/>
-          <BookShelf className="list-books" books={wantToReadBooks} titleSection="Want To Read"/>
-          <BookShelf className="list-books" books={readBooks} titleSection="Read"/>
+
+          <BookShelf 
+            onUpdateSection={this.updateShelfBooks}
+            titleSection="Currently Read"
+            books={currentlyReadingBooks}
+            className="list-books"
+          />
+
+          <BookShelf onUpdateSection={this.updateShelfBooks} className="list-books" books={wantToReadBooks} titleSection="Want To Read"/>
+          <BookShelf  onUpdateSection={this.updateShelfBooks} className="list-books" books={readBooks} titleSection="Read"/>
 
           <div className="open-search">
             <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
