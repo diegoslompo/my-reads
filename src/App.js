@@ -21,15 +21,14 @@ class BooksApp extends React.Component {
     })
 
     //ContactsAPI.remove(contact)
-  }
+  } 
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
-  
-  
+   
   render() {
 
     let currentlyReadingBooks =  this.state.books.filter(book => {
@@ -57,15 +56,14 @@ class BooksApp extends React.Component {
             <h1>MyReads</h1>
           </div>
 
-          <BookShelf 
-            onUpdateSection={this.updateShelfBooks}
+          <BookShelf onUpdateSection={this.updateShelfBooks} 
             titleSection="Currently Read"
             books={currentlyReadingBooks}
             className="list-books"
           />
 
           <BookShelf onUpdateSection={this.updateShelfBooks} className="list-books" books={wantToReadBooks} titleSection="Want To Read"/>
-          <BookShelf  onUpdateSection={this.updateShelfBooks} className="list-books" books={readBooks} titleSection="Read"/>
+          <BookShelf onUpdateSection={this.updateShelfBooks} className="list-books" books={readBooks} titleSection="Read"/>
 
           <div className="open-search">
             <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>

@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-//import BookList from './BookList'
+import Book from './Book'
 
 class BookShelf extends Component {
-
 
   static propTypes = {
     books: PropTypes.array.isRequired,
@@ -11,7 +10,6 @@ class BookShelf extends Component {
   }
 
   render() {
-    const { books, onUpdateSection } = this.props
 
     return (
         <div className="list-books-content">
@@ -19,7 +17,7 @@ class BookShelf extends Component {
               <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.titleSection}</h2>          
                 <div className="bookshelf-books">
-                  <ol className="books-grid">
+                  {/* <ol className="books-grid">
                     {books.map((book) => (
                     <li key={book.id}>
                         <div className="book">
@@ -40,8 +38,8 @@ class BookShelf extends Component {
                         </div>
                       </li>
                     ))}
-                  </ol> 
-                  {/*<BookList shelf={this.props.books} />*/}       
+                  </ol>  */}
+                  <Book shelf={this.props.books} onUpdate={this.props.onUpdateSection} />       
                 </div> 
               </div>
             </div>
