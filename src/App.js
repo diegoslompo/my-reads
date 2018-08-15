@@ -17,6 +17,7 @@ class BooksApp extends React.Component {
     
     this.setState((state) => {
       booksChange = state.books.map((s) => {(s.shelf === book.shelf ? book.shelf = event : '')})
+
       return booksChange
     })
 

@@ -1,11 +1,17 @@
 import React, {Component} from 'react'
 
+const options = [
+    { value: 'currentlyReading', label: 'Currently read' },
+    { value: 'wantToRead', label: 'Want to read' },
+    { value: 'read', label: 'Read' },
+    { value: 'none', label: 'None' },
+]
 
 class BookList extends Component {
 
   render() {
 
-    const {onUpdate } = this.props
+    const { onUpdate } = this.props
 
     return (
         <ol className="books-grid">
@@ -15,12 +21,11 @@ class BookList extends Component {
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                             <div className="book-shelf-changer">
-                            <select onChange={(event) =>  onUpdate(book, event.target.value)}>
-                                <option value="move" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
+                            <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf}>
+                                <option value="move" disabled>Move to...</option>        
+                                {options.map((shelf) => (
+                                    <option value={shelf.value}>{shelf.label}</option>
+                                ))}
                             </select>
                             </div>
                         </div>
