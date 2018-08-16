@@ -3,8 +3,22 @@ import React, {Component} from 'react'
 
 class BookList extends Component {
 
+    state = {
+        value: []
+    }
+
+
   render() {
 
+    // Options select filter
+    const options = [
+        { value: 'currentlyReading', label: 'Currently read' },
+        { value: 'wantToRead', label: 'Want to read' },
+        { value: 'read', label: 'Read' },
+        { value: 'none', label: 'None' },
+    ]
+
+    // attr props to component
     const {onUpdate } = this.props
 
     return (
@@ -15,12 +29,11 @@ class BookList extends Component {
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                             <div className="book-shelf-changer">
-                            <select onChange={(event) =>  onUpdate(book, event.target.value)}>
+                            <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf}>
                                 <option value="move" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
+                                {options.map((shelf) => (
+                                    <option value={shelf.value}>{shelf.label}</option>
+                                ))}
                             </select>
                             </div>
                         </div>
