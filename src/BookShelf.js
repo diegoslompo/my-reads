@@ -28,11 +28,10 @@ class BookShelf extends Component {
             // Filter Shelf, to insert your items
             const bookShelfList = bookShelf.filter((book) => book.shelf === shelf.value) 
             return (
-              <div>
+              <div key={shelf.value}>
                 <div className="bookshelf">
-                  <h2 className="bookshelf-title">{shelf.title}</h2>          
+                  <h2 className="bookshelf-title">{shelf.title}</h2>        
                   <div className="bookshelf-books">
-                    {/* this.props items to list select */}
                     <Book shelf={bookShelfList} onUpdate={onUpdateSection} />       
                   </div> 
                 </div>
