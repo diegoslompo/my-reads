@@ -26,16 +26,6 @@ class BooksApp extends React.Component {
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
     })
-
-
-    // // Update shelf[event] in book the server
-    // BooksAPI.update(book, event).then(() => {
-    //   let booksChange
-    //   this.setState((state) => {
-    //     booksChange = state.books.filter((s) => {(s.shelf === book.shelf ? book.shelf = event : '')})
-    //     return booksChange
-    //   })
-    // })
   }
 
   //get books the server API 

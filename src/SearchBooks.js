@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
 
@@ -10,38 +8,32 @@ class SearchBooks extends Component {
 
   state = {
     query: '',
-    searchBooks: [],
-    searchPage: []
+    searchBooks: '',
+    searchPage: false
   }
 
   updateQuery = (query) => {
 
-
-    if (query) {
-
-      //let showingBooks
-      
-      BooksAPI.search(query).then((result) => {
-        // console.log(result)
-        if(result.length > 0) {
-          console.log("entrou")
-          //const match = new RegExp(escapeRegExp(query), 'i')
-          //showingBooks = result.filter((book) => (match.test(book.title) || match.test(book.authors)))
-          this.setState({searchBooks: this.props.books, searchPage: true })
-        } else {
-          console.log("saiu")
-          this.setState({searchBooks: [], searchPage: false})
-        }
-
-      })
-    } else {
-      this.setState({searchBooks: [], searchPage: false})
-    }
-    
-    // Query Update Value
-    //this.setState({ query: query.trim() })
+    this.setState({ query: query })
+    this.newBook(query)
   }
 
+  newBook = (query) => {
+    if (query) {
+      BooksAPI.search(query).then((result) => {
+        if(result.length > 0) {
+          console.log("entrou")
+          this.setState({searchBooks: result, searchPage: true })
+         } else {
+          console.log("saiu")
+          this.setState({searchBooks: '', searchPage: false})
+        }
+      })
+
+    } else {
+      this.setState({searchBooks: '', searchPage: false})
+    }
+  }
 
 
   // search books with the Search Terms
@@ -77,7 +69,7 @@ class SearchBooks extends Component {
 	render() {
    
     const { onUpdateSection } = this.props
-    const { searchPage, searchBooks } = this.state
+    const { searchPage, searchBooks, query } = this.state
 
 		return (
       <div>
@@ -90,22 +82,26 @@ class SearchBooks extends Component {
               <input 
                 type="text"
                 placeholder="Search by title or author"
+                value={query}
                 onChange={(event) => this.updateQuery(event.target.value)}
               />
             </div>
         </div>
         <div className="ds-search__list">
-          <Book shelf={searchBooks} onUpdate={onUpdateSection} />
-          {searchPage !== true && (
+          {( query !== '' &&  searchPage === true) && (
+            <Book shelf={searchBooks} onUpdate={onUpdateSection} />
+          )}
+          {(query === '' || searchPage === false) && (
             <div className="ds-error__not-found">  
-                <p className="ds-error--no-happy">:(</p>      
+                <p className="ds-error--no-happy">;)</p>      
                 <p className="ds-error__info">
-                  <b>Sorry... no results found</b><br/>
+                  <b>Hello... Search by book or author</b><br/>
                   do your search again or use the terms:
                 </p>
                 <p className="ds-error__terms">'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'</p>
             </div>
-          )}  
+          )}
+ 
         </div>
       </div>
 		)
