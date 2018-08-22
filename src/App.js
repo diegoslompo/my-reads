@@ -39,8 +39,33 @@ class BooksApp extends React.Component {
 
     const {books} = this.state
 
+    // FAKE PROD
+
+    const fakeGraphQLResult = {
+      // Change this value to toggle placeholder vs. real content
+      loading: true,
+      data: {
+        image: 'https://www.fillmurray.com/768/400',
+        content: '“Nothing prepared me for being this awesome.”',
+        alt: 'Bill Murray',
+      },
+    };
+    
+    const ComponentWithSkeletonState = ({ loading, data }) => (
+      <div className={`block ${loading ? 'block--loading' : ''}`}>
+        {!loading && data && [
+          <img className="block__image" src={data.image} alt={data.alt} />,
+          <p className="block__content">{data.content}</p>,
+        ]}
+      </div>
+    );
+
+    // FAKE PROD
+    
     return (
       <div className="app">
+
+        <ComponentWithSkeletonState {...fakeGraphQLResult} />
 
         <Route path='/search' render={({ history }) => (
           <SearchBooks

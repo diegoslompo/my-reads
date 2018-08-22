@@ -35,37 +35,6 @@ class SearchBooks extends Component {
     }
   }
 
-
-  // search books with the Search Terms
-  // searchBooks = (query) => {
-
-  //   let updateSearchedResult = []
-  //   if (query) {
-  //     BooksAPI.search(query).then((result) => {
-  //         // this.updateSearchedResult(result)
-  //         updateSearchedResult = (values) => {
-  //           for (let value of values) {
-  //             for (let book of this.state.books) {
-  //               if (value.id === book.id) {
-  //                 value.shelf = book.shelf
-  //               }
-  //             }
-  //           }   
-  //           this.setState({filteredBooks: values})
-  //         }
-  //         if (result.error !== 'empty query') {
-  //           this.setState({filteredBooks: result})
-  //         } else {
-  //           this.setState({filteredBooks: []})
-  //         }
-  //       })
-  //   } else {
-  //     this.setState({filteredBooks: []})
-  //   }
-  // }
-
-
-
 	render() {
    
     const { onUpdateSection } = this.props
