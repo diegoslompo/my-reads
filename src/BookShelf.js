@@ -23,7 +23,6 @@ class BookShelf extends Component {
  
     return (
         <div className="list-books-content">
-          {/* Foreach Array Shelfs conditionals return */}
           {listShelfsBook.map((shelf) => {
             // Filter Shelf, to insert your items
             const bookShelfList = bookShelf.filter((book) => book.shelf === shelf.value) 

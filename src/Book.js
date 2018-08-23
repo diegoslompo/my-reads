@@ -1,12 +1,6 @@
 import React, {Component} from 'react'
 
-
 class BookList extends Component {
-
-    state = {
-        value: []
-    }
-
 
   render() {
 
@@ -28,7 +22,7 @@ class BookList extends Component {
                     <div className="book">
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${
-                                  book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.smallThumbnail : 'dsAjustar' })` }}></div>
+                                  book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.smallThumbnail : '/images/react.png' })` }}></div>
                             <div className="book-shelf-changer">
                             <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf}  defaultValue="move" >
                                 <option value="move" disabled>Move to...</option>

@@ -5,7 +5,6 @@ import NotificationSearch from './NotificationSearch'
 import ComponentFakeBooks from './ComponentFakeBooks'
 import * as BooksAPI from './BooksAPI'
 
- 
 class SearchBooks extends Component {
 
   state = {
@@ -22,9 +21,12 @@ class SearchBooks extends Component {
   }
 
   newBook = (query) => {
+
+    const {queryResult} = this.state
+    
     if (query) {
       BooksAPI.search(query).then((result) => {
-        if(this.state.query !== '' && result.length > 0) {
+        if(queryResult !== '' && result.length > 0) {
           this.setState({searchBooks: result, searchPage: true })
          } else {
           this.setState({searchBooks: '', searchPage: false})
@@ -39,12 +41,12 @@ class SearchBooks extends Component {
     
     const { onUpdateSection } = this.props
     const { searchPage, searchBooks, query, fakeItems} = this.state
-    const totalApi = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    // simulate total API
+    const totalApi = [...Array(20).keys()]
 
 		return (
       <div>
-        <div className="search-books-bar">
-            
+        <div className="search-books-bar">        
             <Link 
             className="close-search"
             to="/">Close</Link>
@@ -57,18 +59,16 @@ class SearchBooks extends Component {
               />
             </div>
         </div>
-        <div className="ds-search__list">
-          
-          {(query !== '' && searchPage === false) && (
-            <ComponentFakeBooks  showApi={totalApi} showFake={fakeItems}/>
-          )}
+        <div className="ds-search__list">          
           {( query !== '' &&  searchPage === true) && (
             <Book shelf={searchBooks} onUpdate={onUpdateSection} />
+          )}
+          {(query !== '' && searchPage === false) && (
+            <ComponentFakeBooks  showApi={totalApi} showFake={fakeItems}/>
           )}
           {(query === '' && searchPage === false) && (
             <NotificationSearch/>
           )}
- 
         </div>
       </div>
 		)
