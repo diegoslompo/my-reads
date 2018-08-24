@@ -15,18 +15,15 @@ class SearchBooks extends Component {
   }
 
   updateQuery = (query) => {
-
     this.setState({ query: query })
     this.newBook(query)
   }
 
   newBook = (query) => {
-
-    const {queryResult} = this.state
     
     if (query) {
       BooksAPI.search(query).then((result) => {
-        if(queryResult !== '' && result.length > 0) {
+        if(this.state.query !== '' && result.length > 0) {
           this.setState({searchBooks: result, searchPage: true })
          } else {
           this.setState({searchBooks: '', searchPage: false})

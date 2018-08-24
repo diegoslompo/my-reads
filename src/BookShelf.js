@@ -27,7 +27,7 @@ class BookShelf extends Component {
             // Filter Shelf, to insert your items
             const bookShelfList = bookShelf.filter((book) => book.shelf === shelf.value) 
             return (
-              <div key={shelf.value}>
+              <div key={shelf.value} className={shelf.value}>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">{shelf.title}</h2>        
                   <div className="bookshelf-books">

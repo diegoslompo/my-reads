@@ -5,25 +5,27 @@ body {
   line-height: 1.5;
 }
 body, .app {
-  background: white;
+  background: #f2f3f7;
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: #ffffff;
   text-align: center;
 }
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
-  color: white;
+  color: #7c7c7c;
 }
 
 .list-books-content {
   padding: 0 0 80px;
-  flex: 1;
+  flex: 1 1;
+  width: 1100px;
+  margin: 0 auto;
 }
 
 .bookshelf {
@@ -32,13 +34,47 @@ body, .app {
 
 @media (min-width: 600px) {
   .bookshelf {
-    padding: 0 20px 40px;
+    padding: 0 20px 20px;
+    margin-bottom: 10px;
   }
 }
 
 .bookshelf-title {
-  border-bottom: 1px solid #dedede;
+  position: relative;
+  /* background-color: #fff; */
+  border-radius: 3px;
+  color: #7b7b7b;
+  padding: 18px 9px;
+  border-bottom: 1px solid #dfdfdf;
+  margin-bottom: 20px;
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: 500;
+  /* text-align: center; */
+  /* -webkit-box-shadow: 0 4px 25px 0px rgba(0,0,0,0.07); */
+  /* box-shadow: 0 4px 25px 0px rgba(0,0,0,0.07); */
 }
+.bookshelf-title::before {
+  content: '';
+  width: 12%;
+  height: 6px;
+  position: absolute;
+  bottom: -3px;
+  z-index: 0;
+  left: 0;
+  border-radius: 10px;
+}
+
+.currentlyReading .bookshelf-title::before {
+  background: #35c6df;
+}
+.wantToRead .bookshelf-title::before {
+  background: #df8735;
+}
+.read .bookshelf-title::before {
+  background: #df3576;
+}
+
 .bookshelf-books {
   text-align: center;
 }
@@ -109,18 +145,26 @@ body, .app {
   list-style-type: none;
   padding: 0;
   margin: 0;
-
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -ms-flex-pack: center;
+  /* justify-content: center; */
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 .books-grid li {
-  padding: 10px 15px;
+  padding: 20px 32px;
   text-align: left;
+  background-color: #fff;
+  box-shadow: 0 4px 25px 0px rgba(0,0,0,0.07);
+  border-radius: 6px;
+  margin: 10px;
+  border-bottom: 3px solid #c8c8c8;
 }
 
 .book {
-  width: 140px;
+  width: 128px;
+  position: relative;
 }
 .book-title,
 .book-authors {
@@ -128,31 +172,62 @@ body, .app {
 }
 .book-title {
   margin-top: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 600;
+  text-overflow: ellipsis;
 }
 .book-authors {
   color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .book-top {
   position: relative;
   height: 200px;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-align: end;
   align-items: flex-end;
+}
+
+.book-select {
+  position: absolute;
+  right: -15px;
+  top: 195px;
+  font-size: 30px;
+  color: #797979;
 }
 
 .book-shelf-changer {
   position: absolute;
-  right: 0;
-  bottom: -10px;
+  right: -25px;
+  top: 205px;
+  display: flex;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #60ac5d;
-  background-image: url('./icons/arrow-drop-down.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: 0.5s;
+}
+.book-shelf-changer:hover {
+  background: #efefef;
+}
+.book-shelf-changer::before {
+  pointer-events: none;
+  content: '...';
+    position: absolute;
+    /* right: -15px; */
+    /* top: 195px; */
+    font-size: 32px;
+    color: #797979;
+    line-height: 0.7;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .book-shelf-changer select {
   width: 100%;
@@ -164,12 +239,26 @@ body, .app {
 /* book cover */
 
 .book-cover {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  background-color: rgb(245, 245, 245);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.star-ratings {
+  position: relative;
+  margin-top: -22px;
+  margin-top: 10px;
+  left: -32px;
+  width: 115px;
+  background-color: #f0f0f0;
+  padding: 5px 0px 5px 10px;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.star-container {
+  height: 21px;
+}
+
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
@@ -219,7 +308,7 @@ p.ds-error__terms {
  
  :root {
   --gray-light: #eeeeee;
-  --gray-accent: #f5f5f5;
+  --gray-accent: #f1f0f0;
 }
 
 .block {
@@ -237,19 +326,19 @@ p.ds-error__terms {
   display: block;
   border-radius: 5px;
   background-image: linear-gradient(
-    110deg,
-    var(--gray-light) 73%,
-    var(--gray-accent) 75%,
-    var(--gray-light) 77%,
-    var(--gray-light) 78%,
-    var(--gray-accent) 84%,
-    var(--gray-accent) 88%,
-    var(--gray-light) 94%,
+    95deg,
+    var(--gray-light) 45%,
+    var(--gray-accent) 54%,
+    var(--gray-light) 55%,
+    var(--gray-light) 64%,
+    var(--gray-accent) 65%,
+    var(--gray-accent) 79%,
+    var(--gray-light) 80%,
     var(--gray-light) 100%
   );
   background-size: 200% 100%;
   background-position: 0 center;
-  animation: 1s ease-in-out loading infinite;
+  animation: 0.7s loading infinite;
 }
 
 /* Image placeholder. */
@@ -281,5 +370,5 @@ p.ds-error__terms {
 
 @keyframes loading {
   0% { background-position-x: 0; }
-  40%, 100% { background-position-x: -200%; }
+  100% { background-position-x: -200%; }
 }

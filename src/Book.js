@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import StarRatings from 'react-star-ratings'
 
 class BookList extends Component {
 
@@ -22,16 +23,22 @@ class BookList extends Component {
                     <div className="book">
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${
-                                  book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.smallThumbnail : '/images/react.png' })` }}></div>
-                            <div className="book-shelf-changer">
+                                  book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.smallThumbnail : '/images/react.png' })` }}>
+                            </div>
+                        </div>
+                        <div className="book-shelf-changer">
                             <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf}  defaultValue="move" >
                                 <option value="move" disabled>Move to...</option>
                                 {options.map((shelf) => (
                                     <option value={shelf.value} key={shelf.value} >{shelf.label}</option>
                                 ))}
                             </select>
-                            </div>
                         </div>
+                        <StarRatings
+                            rating={book.averageRating}
+                            starDimension="18px"
+                            starSpacing="0px"
+                        />
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">{book.authors}</div>
                     </div>

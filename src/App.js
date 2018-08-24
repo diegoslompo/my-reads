@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import BookShelf from './BookShelf'
 import SearchBooks from './SearchBooks'
+import swal from 'sweetalert2'
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
@@ -25,6 +26,14 @@ class BooksApp extends React.Component {
       this.setState(state => ({
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
+
+      // spaces to camelCase
+      let shelfSwal = book.shelf.replace(/([A-Z])/g, ' $1').trim()
+      swal(
+        'Book Moved!',
+        'You moved to ' +  shelfSwal,
+        'success'
+      )
     })
   }
 
