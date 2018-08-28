@@ -1,13 +1,27 @@
-# MyReads Project
+# My Reads Project -  Diego Slompo
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+Este projeto foi desenvolvido para apresentar o aplicativo para meus livros em React.js, que deve trocar de prateleiras conforme os itens selecionados na pagina principal ou na busca, realizando todas os requisitos solicitados.
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+Requisitos:
+* :white-check-mark: É fácil instalar e iniciar a aplicação?
+* :white-check-mark: A aplicação inclui o README, com instruções claras de instalação e inicialização?
+* :white-check-mark: A página principal exibe três categorias (ou "estantes") para livros ("currently reading", "want to read" e "read")?
+* :white-check-mark: A página principal permite que os usuários mudem os livros de estante?
+* :white-check-mark: As informações são mantidas quando ocorrem refreshes de página?
+* :white-check-mark: A página de busca tem um input de busca que permite que os usuários procurem por livros?
+* :white-check-mark: Os resultados de busca permitem que um usuário categorize um livro como "currently reading", "want to read" ou "read"?
+* :white-check-mark: As seleções feitas na página de busca aparecem na página principal?
+* :white-check-mark: A página principal conecta-se à página de busca?
+* :white-check-mark: A página de busca conecta-se de volta à página principal?
+* :white-check-mark: O código do projeto lida com o gerenciamento de estado de forma adequada?
+* :white-check-mark: O JSX é formatado de maneira adequada?
 
-## TL;DR
 
-To get started developing right away:
+## Getting Started
 
+To get started app my reads:
+
+* Clone the project
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
@@ -81,9 +95,6 @@ search(query)
 ## Important
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Contributing
 

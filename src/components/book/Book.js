@@ -33,7 +33,7 @@ class BookList extends Component {
                             </div>
                         </div>
                         <div className="book-shelf-changer">
-                            <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf}  defaultValue="move" >
+                            <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf ? book.shelf : "move"} >
                                 <option value="move" disabled>Move to...</option>
                                 {options.map((shelf) => (
                                     <option value={shelf.value} key={shelf.value} >{shelf.label}</option>

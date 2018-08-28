@@ -2,8 +2,8 @@ import React from 'react'
 import './App.css'
 import { Route } from 'react-router-dom'
 import {Link} from 'react-router-dom'
-import BookShelf from './BookShelf'
-import SearchBooks from './SearchBooks'
+import BookShelf from './components/book/BookShelf'
+import SearchBooks from './components/search/SearchBooks'
 import swal from 'sweetalert2'
 import * as BooksAPI from './BooksAPI'
 
@@ -28,7 +28,7 @@ class BooksApp extends React.Component {
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
 
-      // spaces to camelCase
+      // spaces to camelCase return shelf
       let shelfSwal = book.shelf.replace(/([A-Z])/g, ' $1').trim()
       swal(
         'Book Moved!',

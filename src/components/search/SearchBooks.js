@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
-import Book from './Book'
-import NotificationSearch from './NotificationSearch'
+import Book from '../book/Book'
+import NotificationSearch from '../notification/NotificationSearch'
 import ComponentFakeBooks from './ComponentFakeBooks'
 import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../../BooksAPI'
 
 class SearchBooks extends Component {
 
@@ -16,11 +16,10 @@ class SearchBooks extends Component {
   }
   
   static propTypes = {
-    searchPage: PropTypes.array.isRequired,
-    searchBooks: PropTypes.array.isRequired,
-    searchPage: PropTypes.array.isRequired,
-    onUpdateSection: PropTypes.func.isRequired,
-    totalApi: PropTypes.array.isRequired
+    searchBooks: PropTypes.array,
+    searchPage: PropTypes.bool,
+    onUpdateSection: PropTypes.func,
+    totalApi: PropTypes.array
   }
 
   updateQuery = (query) => {
@@ -29,6 +28,7 @@ class SearchBooks extends Component {
   }
 
   newBook = (query) => {
+
     if (query) {
       BooksAPI.search(query).then((result) => {
         if(this.state.query !== '' && result.length > 0) {
@@ -67,10 +67,16 @@ class SearchBooks extends Component {
         </div>
         <div className="ds-search__list">          
           {( query !== '' &&  searchPage === true) && (
-            <Book shelf={searchBooks} onUpdate={onUpdateSection} />
+            <Book 
+              shelf={searchBooks}
+              onUpdate={onUpdateSection}
+            />
           )}
           {(query !== '' && searchPage === false) && (
-            <ComponentFakeBooks  showApi={totalApi} showFake={fakeItems}/>
+            <ComponentFakeBooks 
+              showApi={totalApi}
+              showFake={fakeItems}
+            />
           )}
           {(query === '' && searchPage === false) && (
             <NotificationSearch/>
