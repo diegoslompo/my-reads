@@ -4,7 +4,7 @@ import Book from '../book/Book'
 import NotificationSearch from '../notification/NotificationSearch'
 import ComponentFakeBooks from './ComponentFakeBooks'
 import PropTypes from 'prop-types'
-import * as BooksAPI from '../../BooksAPI'
+import * as BooksAPI from '../../utils/BooksAPI'
 
 class SearchBooks extends Component {
 

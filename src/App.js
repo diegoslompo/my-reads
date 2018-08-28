@@ -5,12 +5,12 @@ import {Link} from 'react-router-dom'
 import BookShelf from './components/book/BookShelf'
 import SearchBooks from './components/search/SearchBooks'
 import swal from 'sweetalert2'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './utils/BooksAPI' 
 
 class BooksApp extends React.Component {
 
   state = {
-    books: [],
+    books: [], 
   }
 
   updateShelfBooks = (book, event) => {

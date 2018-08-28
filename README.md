@@ -2,7 +2,7 @@
 
 This project was developed to present the application for my books in React.js, that should change of shelves according to the selected items in the main page or the search, realizing all the requested requirements.
 
-Requisitos:
+Requirements:
 * &#x2705; Is it easy to install and start an application?
 * &#x2705; Does an application include README with clear installation and startup?
 * &#x2705; A main page was three categories ("currently reading", "want to read" and "read")?
