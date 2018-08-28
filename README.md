@@ -1,21 +1,24 @@
 # My Reads Project -  Diego Slompo
 
-Este projeto foi desenvolvido para apresentar o aplicativo para meus livros em React.js, que deve trocar de prateleiras conforme os itens selecionados na pagina principal ou na busca, realizando todas os requisitos solicitados.
+This project was developed to present the application for my books in React.js, that should change of shelves according to the selected items in the main page or the search, realizing all the requested requirements.
 
 Requisitos:
-* :white-check-mark: É fácil instalar e iniciar a aplicação?
-* :white-check-mark: A aplicação inclui o README, com instruções claras de instalação e inicialização?
-* :white-check-mark: A página principal exibe três categorias (ou "estantes") para livros ("currently reading", "want to read" e "read")?
-* :white-check-mark: A página principal permite que os usuários mudem os livros de estante?
-* :white-check-mark: As informações são mantidas quando ocorrem refreshes de página?
-* :white-check-mark: A página de busca tem um input de busca que permite que os usuários procurem por livros?
-* :white-check-mark: Os resultados de busca permitem que um usuário categorize um livro como "currently reading", "want to read" ou "read"?
-* :white-check-mark: As seleções feitas na página de busca aparecem na página principal?
-* :white-check-mark: A página principal conecta-se à página de busca?
-* :white-check-mark: A página de busca conecta-se de volta à página principal?
-* :white-check-mark: O código do projeto lida com o gerenciamento de estado de forma adequada?
-* :white-check-mark: O JSX é formatado de maneira adequada?
+* &#x2705; Is it easy to install and start an application?
+* &#x2705; Does an application include README with clear installation and startup?
+* &#x2705; A main page was three categories ("currently reading", "want to read" and "read")?
+* &#x2705; Does a main page allow users to change books on the shelf?
+* &#x2705; How is information maintained when page refreshes occur?
+* &#x2705; Does a search page have a search entry that allows users to search for books?
+* &#x2705; Search results allow a user to categorize a book as "currently reading," "want to read," or "read"?
+* &#x2705; How do the selections made on the search page appear on the main page?
+* &#x2705; Does a homepage link to the search page?
+* &#x2705; A connected search page back to the main page?
+* &#x2705; Does the project code handle state management properly?
+* &#x2705; Is JSX formatted properly?
 
+Aditional:
+* &#x2714; Alert moved book
+* &#x2714; Skeleton/Fake loading items
 
 ## Getting Started
 
@@ -25,79 +28,31 @@ To get started app my reads:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+## How Use Home Page
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+* Navigate between books and selected in the `...` icon to choose the shelf you want to change
+    * Enter the dates of your stay:
+    * Switch off the shelf
 
-## Backend Server
+* Perform Page Refresh
+    * Books must be in their respective selected positions
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+* In `+` you can perform a search
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
 
-### `getAll`
+## How Use Search
 
-Method Signature:
+* Type a book or author
+    * Wait for the results by checking the skeleton and delete to have the search empty with the initial message
 
-```js
-getAll()
-```
-
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
-
-### `update`
-
-Method Signature:
-
-```js
-update(book, shelf)
-```
-
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
-
-### `search`
-
-Method Signature:
-
-```js
-search(query)
-```
-
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
+#### * Important:
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
+Use the terms
+```bash
+'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
+```
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
