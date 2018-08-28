@@ -24,12 +24,13 @@ class BooksApp extends React.Component {
     // return update api
     BooksAPI.update(book, event).then(() => {
       book.shelf = event
+      // equal project contacts example in class
       this.setState(state => ({
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
 
       // spaces to camelCase return shelf
-      let shelfSwal = book.shelf.replace(/([A-Z])/g, ' $1').trim()
+      const shelfSwal = book.shelf.replace(/([A-Z])/g, ' $1').trim()
       swal(
         'Book Moved!',
         'You moved to ' +  shelfSwal,
@@ -52,7 +53,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-        <Route path='/search' render={({ history }) => (
+        <Route path='/search' render={() => (
           <SearchBooks
             onUpdateSection={this.updateShelfBooks}
             books={books}

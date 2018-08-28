@@ -18,7 +18,9 @@ Requirements:
 
 Aditional:
 * &#x2714; Alert moved book
+    * Use the component Swal2, license student [SwalAlert2](https://www.npmjs.com/package/sweetalert2)
 * &#x2714; Skeleton/Fake loading items
+    * In search apply the fake loading
 
 ## Getting Started
 
@@ -44,6 +46,7 @@ To get started app my reads:
 
 * Type a book or author
     * Wait for the results by checking the skeleton and delete to have the search empty with the initial message
+* Change shelf and verify in home
 
 #### * Important:
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
