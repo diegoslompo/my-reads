@@ -1,29 +1,44 @@
 import React from 'react'
 import './App.css'
-import BookShelf from './BookShelf'
-import SearchBooks from './SearchBooks'
+import { Route } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import BookShelf from './components/book/BookShelf'
+import SearchBooks from './components/search/SearchBooks'
+import swal from 'sweetalert2'
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends React.Component {
 
   state = {
     books: [],
-    showSearchPage: false
   }
 
   updateShelfBooks = (book, event) => {
 
-    let booksChange
-    
-    this.setState((state) => {
-      booksChange = state.books.map((s) => {(s.shelf === book.shelf ? book.shelf = event : '')})
-
-      return booksChange
+    // set initial books
+    const books = this.state.books
+    this.setState({
+      books
     })
 
-    //ContactsAPI.remove(contact)
-  } 
+    // return update api
+    BooksAPI.update(book, event).then(() => {
+      book.shelf = event
+      this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat([book])
+      }))
 
+      // spaces to camelCase return shelf
+      let shelfSwal = book.shelf.replace(/([A-Z])/g, ' $1').trim()
+      swal(
+        'Book Moved!',
+        'You moved to ' +  shelfSwal,
+        'success'
+      )
+    })
+  }
+
+  //get books the server API 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
@@ -32,44 +47,35 @@ class BooksApp extends React.Component {
    
   render() {
 
-    let currentlyReadingBooks =  this.state.books.filter(book => {
-      if(book.shelf === "currentlyReading")
-        return book
-    })
-    let wantToReadBooks =  this.state.books.filter(book => {
-      if(book.shelf === "wantToRead")
-        return book
-    })
-    let readBooks =  this.state.books.filter(book => {
-      if(book.shelf === "read")
-        return book
-    })
-
+    const {books} = this.state
+    
     return (
       <div className="app">
 
-        {/*<SearchBooks 
-          className="search-books"    
-        />*/}
-
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-
-          <BookShelf onUpdateSection={this.updateShelfBooks} 
-            titleSection="Currently Read"
-            books={currentlyReadingBooks}
-            className="list-books"
+        <Route path='/search' render={({ history }) => (
+          <SearchBooks
+            onUpdateSection={this.updateShelfBooks}
+            books={books}
+            className="search-books"
           />
+        )}/>
 
-          <BookShelf onUpdateSection={this.updateShelfBooks} className="list-books" books={wantToReadBooks} titleSection="Want To Read"/>
-          <BookShelf onUpdateSection={this.updateShelfBooks} className="list-books" books={readBooks} titleSection="Read"/>
-
-          <div className="open-search">
-            <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+        <Route exact path='/' render={() => (
+          <div className="list-books">
+            <div className="list-books-title">
+              <h1>My Reads</h1>
+            </div>
+            <BookShelf 
+              onUpdateSection={this.updateShelfBooks}
+              bookShelf={books}
+              className="list-books"
+            />
+            <div className="open-search">
+              <Link
+                to='/search'> Add a book </Link>
+            </div>
           </div>
-        </div>
+        )}/>
       </div>
     )
   }
