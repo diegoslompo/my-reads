@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Book from './Book'
 import NotificationSearch from './NotificationSearch'
 import ComponentFakeBooks from './ComponentFakeBooks'
+import PropTypes from 'prop-types'
 import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
@@ -13,6 +14,14 @@ class SearchBooks extends Component {
     fakeItems: 20,
     searchPage: false
   }
+  
+  static propTypes = {
+    searchPage: PropTypes.array.isRequired,
+    searchBooks: PropTypes.array.isRequired,
+    searchPage: PropTypes.array.isRequired,
+    onUpdateSection: PropTypes.func.isRequired,
+    totalApi: PropTypes.array.isRequired
+  }
 
   updateQuery = (query) => {
     this.setState({ query: query })
@@ -20,7 +29,6 @@ class SearchBooks extends Component {
   }
 
   newBook = (query) => {
-    
     if (query) {
       BooksAPI.search(query).then((result) => {
         if(this.state.query !== '' && result.length > 0) {
@@ -38,6 +46,7 @@ class SearchBooks extends Component {
     
     const { onUpdateSection } = this.props
     const { searchPage, searchBooks, query, fakeItems} = this.state
+
     // simulate total API
     const totalApi = [...Array(20).keys()]
 

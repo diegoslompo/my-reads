@@ -22,22 +22,22 @@ class BookShelf extends Component {
     const { bookShelf, onUpdateSection } = this.props
  
     return (
-        <div className="list-books-content">
-          {listShelfsBook.map((shelf) => {
-            // Filter Shelf, to insert your items
-            const bookShelfList = bookShelf.filter((book) => book.shelf === shelf.value) 
-            return (
-              <div key={shelf.value} className={shelf.value}>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">{shelf.title}</h2>        
-                  <div className="bookshelf-books">
-                    <Book shelf={bookShelfList} onUpdate={onUpdateSection} />       
-                  </div> 
-                </div>
+      <div className="list-books-content">
+        {listShelfsBook.map((shelf) => {
+          // Filter Shelf, to insert your items
+          const bookShelfList = bookShelf.filter((book) => book.shelf === shelf.value) 
+          return (
+            <div key={shelf.value} className={shelf.value}>
+              <div className="bookshelf">
+                <h2 className="bookshelf-title">{shelf.title}</h2>        
+                <div className="bookshelf-books">
+                  <Book shelf={bookShelfList} onUpdate={onUpdateSection} />       
+                </div> 
               </div>
-            )}
+            </div>
           )}
-        </div>
+        )}
+      </div>
     )
   }
 }

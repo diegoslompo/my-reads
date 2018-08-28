@@ -11,16 +11,17 @@ class BooksApp extends React.Component {
 
   state = {
     books: [],
-    // showSearchPage: false
   }
 
   updateShelfBooks = (book, event) => {
 
+    // set initial books
     const books = this.state.books
     this.setState({
       books
     })
 
+    // return update api
     BooksAPI.update(book, event).then(() => {
       book.shelf = event
       this.setState(state => ({
@@ -72,7 +73,6 @@ class BooksApp extends React.Component {
             <div className="open-search">
               <Link
                 to='/search'> Add a book </Link>
-              {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> */}
             </div>
           </div>
         )}/>

@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import StarRatings from 'react-star-ratings'
 
 class BookList extends Component {
+
+  static propTypes = {
+    shelf: PropTypes.array.isRequired,
+    onUpdate: PropTypes.func.isRequired
+  }
 
   render() {
 
@@ -14,11 +20,11 @@ class BookList extends Component {
     ]
 
     // attr props to component
-    const {onUpdate } = this.props
+    const { onUpdate, shelf } = this.props
 
     return (
         <ol className="books-grid">
-            {this.props.shelf.map((book) => (
+            {shelf.map((book) => (
                 <li key={book.id}>
                     <div className="book">
                         <div className="book-top">
