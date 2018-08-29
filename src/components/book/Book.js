@@ -27,13 +27,17 @@ class BookList extends Component {
             {shelf.map((book) => (
                 <li key={book.id}>
                     <div className="book">
+                        <h2>{book.shelf}</h2>
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${
                                   book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.smallThumbnail : '/images/react.png' })` }}>
                             </div>
                         </div>
                         <div className="book-shelf-changer">
-                            <select onChange={(event) =>  onUpdate(book, event.target.value)} value={book.shelf ? book.shelf : "move"} >
+                            {console.log(book)}
+                            <select 
+                                onChange={(event) =>  onUpdate(book, event.target.value)}
+                                value={book.shelf} >
                                 <option value="move" disabled>Move to...</option>
                                 {options.map((shelf) => (
                                     <option value={shelf.value} key={shelf.value} >{shelf.label}</option>

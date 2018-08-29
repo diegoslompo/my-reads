@@ -29,10 +29,17 @@ class SearchBooks extends Component {
 
   newBook = (query) => {
 
+    
     if (query) {
       BooksAPI.search(query).then((result) => {
-        if(this.state.query !== '' && result.length > 0) {
+        if( result.length > 0) {
+          // set initial books
+          const searchBooks = this.props.books
+          this.setState({
+            searchBooks
+          })
           this.setState({searchBooks: result, searchPage: true })
+
          } else {
           this.setState({searchBooks: '', searchPage: false})
         }
