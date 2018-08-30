@@ -1,10 +1,11 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import StarRatings from 'react-star-ratings'
 
-class BookList extends Component {
+class BookList extends PureComponent {
 
   static propTypes = {
+    booksOrigin: PropTypes.array.isRequired,
     shelf: PropTypes.array.isRequired,
     onUpdate: PropTypes.func.isRequired
   }
@@ -20,24 +21,22 @@ class BookList extends Component {
     ]
 
     // attr props to component
-    const { onUpdate, shelf } = this.props
+    const { onUpdate, shelf, booksOrigin } = this.props
 
     return (
         <ol className="books-grid">
             {shelf.map((book) => (
                 <li key={book.id}>
                     <div className="book">
-                        <h2>{book.shelf}</h2>
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${
                                   book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.smallThumbnail : '/images/react.png' })` }}>
                             </div>
                         </div>
                         <div className="book-shelf-changer">
-                            {console.log(book)}
                             <select 
                                 onChange={(event) =>  onUpdate(book, event.target.value)}
-                                value={book.shelf} >
+                                value={booksOrigin.filter((b) => b.id === book.id).reduce((r,book) => book.shelf, 'none')} >
                                 <option value="move" disabled>Move to...</option>
                                 {options.map((shelf) => (
                                     <option value={shelf.value} key={shelf.value} >{shelf.label}</option>

@@ -21,6 +21,9 @@ Aditional:
     * Use the component Swal2, license student [SwalAlert2](https://www.npmjs.com/package/sweetalert2)
 * &#x2714; Skeleton/Fake loading items
     * In search apply the fake loading
+* &#x2714; Notification Terms in Search
+* &#x2714; PureComponent in Book
+* &#x2714; Debounce include in Search
 
 ## Getting Started
 

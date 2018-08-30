@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Book from '../book/Book'
 import NotificationSearch from '../notification/NotificationSearch'
 import ComponentFakeBooks from './ComponentFakeBooks'
+import { debounce } from 'throttle-debounce';
 import PropTypes from 'prop-types'
 import * as BooksAPI from '../../utils/BooksAPI'
 
@@ -27,27 +28,26 @@ class SearchBooks extends Component {
     this.newBook(query)
   }
 
-  newBook = (query) => {
+  newBook = debounce(600,(query) => {  
+      if (query) {
+        BooksAPI.search(query).then((result) => {
+          if( result.length > 0) {
+            // set initial books
+            const searchBooks = this.props.books
+            this.setState({
+              searchBooks
+            })
+            this.setState({searchBooks: result, searchPage: true })
 
-    
-    if (query) {
-      BooksAPI.search(query).then((result) => {
-        if( result.length > 0) {
-          // set initial books
-          const searchBooks = this.props.books
-          this.setState({
-            searchBooks
-          })
-          this.setState({searchBooks: result, searchPage: true })
-
-         } else {
-          this.setState({searchBooks: '', searchPage: false})
-        }
-      })
-    } else {
-      this.setState({searchBooks: '', searchPage: false})
+          } else {
+            this.setState({searchBooks: '', searchPage: false})
+          }
+        })
+      } else {
+        this.setState({searchBooks: '', searchPage: false})
+      }
     }
-  }
+  )
 
 	render() {
     
@@ -77,6 +77,7 @@ class SearchBooks extends Component {
             <Book 
               shelf={searchBooks}
               onUpdate={onUpdateSection}
+              booksOrigin={this.props.books}
             />
           )}
           {(query !== '' && searchPage === false) && (

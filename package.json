@@ -6,7 +6,8 @@
     "react-router-dom": "^4.3.1",
     "react-star-ratings": "^2.3.0",
     "sort-by": "^1.2.0",
-    "sweetalert2": "^7.26.11"
+    "sweetalert2": "^7.26.11",
+    "throttle-debounce": "^2.0.1"
   },
   "devDependencies": {
     "react-scripts": "1.1.4"
